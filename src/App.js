@@ -1,7 +1,22 @@
+import React, { useState, useEffect } from "react";
 import logo from './logo.svg';
 import './App.css';
+import Axios from 'axios';
 
 function App() {
+
+  const [movieName, setMovieName] = useState("");
+  const [review, setReview] = useState("");
+
+  const submitReview = () => {
+    Axios.post("http://localhost:3001/api/insert", {
+      movieName: movieName, 
+      moviReview: review
+    }).then(()=>{
+      alert("successful insert");
+    });
+  };
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -21,19 +36,19 @@ function App() {
       <h1>CRUD APPLICATION REACT.JS / NODE.JS</h1>
       <div className="form">
         <label>Nom : </label>
-        <input type="text" name="movieName"></input>
-        {/* <input type="text" name="movieName" onChange={(e)=>{
+        {/* <input type="text" name="movieName"></input> */}
+        <input type="text" name="movieName" onChange={(e)=>{
           setMovieName(e.target.value)
-        }}></input> */}
+        }}></input>
 
         <label>Review : </label>
-        <input type="text" name="review"></input>
-        {/* <input type="text" name="review" onChange={(e)=>{
+        {/* <input type="text" name="review"></input> */}
+        <input type="text" name="review" onChange={(e)=>{
           setReview(e.target.value)
-        }}></input> */}
+        }}></input>
 
-        <button >Envoi</button>
-        {/* <button onClick={submitReview}>Envoi</button> */}
+        {/* <button >Envoi</button> */}
+        <button onClick={submitReview}>Envoi</button>
       </div>
 
     </div>
