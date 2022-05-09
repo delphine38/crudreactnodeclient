@@ -7,6 +7,15 @@ function App() {
 
   const [movieName, setMovieName] = useState("");
   const [review, setReview] = useState("");
+  const [movieReviewList, setMovieList] = useState([])
+
+
+  useEffect(()=>{
+    Axios.get('http://localhost:3001/api/get').then((Response)=>{
+    // console.log(Response.data);
+    setMovieList(Response.data)
+    })
+  }, []);
 
   const submitReview = () => {
     Axios.post("http://localhost:3001/api/insert", {
@@ -49,6 +58,11 @@ function App() {
 
         {/* <button >Envoi</button> */}
         <button onClick={submitReview}>Envoi</button>
+
+        <span class="bravo">Bravo, les données ont été envoyé ! </span>
+        {movieReviewList.map((value)=>{
+          return <h1>MovieName : {value.movieName} | Movie Review : {value.moviReview}</h1>
+        })}
       </div>
 
     </div>

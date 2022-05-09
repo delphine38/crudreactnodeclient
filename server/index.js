@@ -16,21 +16,22 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/api/get", (req, res)=>{
-    const sqlSelect = "SELECT * movie_reviews";
-    db.query(sqlInsert, (err, result)=>{
-        console.log(result);
-    })
-})
+    const sqlSelect = "SELECT * FROM movie_reviews";
+    db.query(sqlSelect, (err, result)=>{
+        res.send(result);
+        // console.log(result);
+    });
+});
 
 
 app.post("/api/insert", (req, res)=>{
-
+    const movieName = req.body.movieName;
+    const moviReview = req.body.moviReview;
     
-const movieName = req.body.movieName
-    const moviReview = req.body.moviReview
     const sqlInsert = "INSERT INTO movie_reviews(movieName, moviReview) VALUES (?,?)";
     db.query(sqlInsert, [movieName, moviReview], (err, result)=>{
         console.log(result);
+        // bravo[0].style.visibility='visible';
     })
 });
 

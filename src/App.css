@@ -16,6 +16,10 @@
   font-size: 25px;
 }
 
+.bravo {
+  visibility: hidden;
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
