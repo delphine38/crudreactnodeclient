@@ -72,7 +72,12 @@ function App() {
 
         {/* affichage des données souhaiter qui sont dans la bdd */}
         {movieReviewList.map((value)=>{
-          return <h1>MovieName : {value.movieName} , Movie Review : {value.moviReview}</h1>
+          return(
+            <div className="card">
+              <h1>{value.movieName}</h1> <p>{value.moviReview}</p> 
+            </div>
+
+             )
         })}
       </div>
 
