@@ -42,6 +42,26 @@ app.post("/api/insert", (req, res)=>{
     })
 });
 
+//fonction pour supprimer
+app.delete('/api/delete/:movieName', (req, res)=>{
+    const name =  req.params.movieName;
+    const sqlDelete = "UPDATE SET movie_reviews movieName = ?";
+
+    db.query(sqlDelete, name, (err, result)=>{
+       if (err) console.log(err);
+    });
+});
+//fonction pour modifier
+app.put('/api/update', (req, res)=>{
+    const name =  req.body.movieName;
+    const review =  req.body.moviReview;
+    const sqlUpdate = "UPDATE movie_reviews SET moviReview = ? WHERE movieName = ?";
+
+    db.query(sqlUpdate,[review, name], (err, result)=>{
+       if (err) console.log(err);
+    });
+});
+
 //vérification que le serveur fonctionne
 app.listen(3001,()=>{
     console.log('running on port 3001');

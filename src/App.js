@@ -7,7 +7,9 @@ function App() {
 
   const [movieName, setMovieName] = useState("");
   const [review, setReview] = useState("");
-  const [movieReviewList, setMovieList] = useState([])
+  const [movieReviewList, setMovieList] = useState([]);
+
+  const [newReview, setNewReview] = useState("");
 
 
   // useEffect pour appeler les données qui sont dans la bdd
@@ -34,6 +36,21 @@ function App() {
        ]);
     // });
   };
+
+  //const pour supprimer
+  const deleteReview = (movie)=>{
+    Axios.delete(`http://localhost:3001/api/delete/${movie}`);
+  }
+
+  //const pour modifier
+  const updateReview = (movie)=>{
+    Axios.put("http://localhost:3001/api/update", {
+      movieName: movie, 
+      moviReview: newReview,
+    });
+
+    setNewReview("")
+  }
 
   return (
     <div className="App">
@@ -75,8 +92,13 @@ function App() {
           return(
             <div className="card">
               <h1>{value.movieName}</h1> <p>{value.moviReview}</p> 
-            </div>
 
+              <button onClick={() => {deleteReview(value.movieName)}}>Supprimer</button>
+              <input type="text" id="updateInput" onChange={(e)=>{
+                setNewReview(e.target.value)
+              }} />
+              <button onClick={()=>{updateReview(value.movieName)}}>Modifier</button>
+            </div>
              )
         })}
       </div>
