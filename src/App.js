@@ -10,6 +10,7 @@ function App() {
   const [movieReviewList, setMovieList] = useState([])
 
 
+  // useEffect pour appeler les données qui sont dans la bdd
   useEffect(()=>{
     Axios.get('http://localhost:3001/api/get').then((Response)=>{
     // console.log(Response.data);
@@ -17,13 +18,21 @@ function App() {
     })
   }, []);
 
+
+  // const qui sert à faire en sorte qu'en appuyant sur le bouton les valeurs vont à la dbb
   const submitReview = () => {
+
     Axios.post("http://localhost:3001/api/insert", {
       movieName: movieName, 
-      moviReview: review
-    }).then(()=>{
-      alert("successful insert");
+      moviReview: review,
     });
+    // .then(()=>{
+      // alert("successful insert");
+      setMovieList([
+        ...movieReviewList, 
+        {movieName: movieName, moviReview: review},
+       ]);
+    // });
   };
 
   return (
@@ -60,8 +69,10 @@ function App() {
         <button onClick={submitReview}>Envoi</button>
 
         <span class="bravo">Bravo, les données ont été envoyé ! </span>
+
+        {/* affichage des données souhaiter qui sont dans la bdd */}
         {movieReviewList.map((value)=>{
-          return <h1>MovieName : {value.movieName} | Movie Review : {value.moviReview}</h1>
+          return <h1>MovieName : {value.movieName} , Movie Review : {value.moviReview}</h1>
         })}
       </div>
 
