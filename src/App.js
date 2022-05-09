@@ -92,7 +92,7 @@ function App() {
           return(
             <div className="card">
               <h1>{value.movieName}</h1> <p>{value.moviReview}</p> 
-
+              <h4 className="green">Rafraichi la page pour voir les résultats de la modification ou de la suppression</h4>
               <button onClick={() => {deleteReview(value.movieName)}}>Supprimer</button>
               <input type="text" id="updateInput" onChange={(e)=>{
                 setNewReview(e.target.value)

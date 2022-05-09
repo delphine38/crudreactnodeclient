@@ -18,7 +18,7 @@
 
 .card {
   width: 500px;
-  height: 170px;
+  height: 250px;
   border: 1px solid black;
   border-radius: 10px;
   margin: 10px;
@@ -28,6 +28,10 @@
   width: 100px;
   height: 20px;
   margin-bottom: 20px;
+}
+
+.green {
+  color: rgb(43, 182, 43);
 }
 
 .bravo {
